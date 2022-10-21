@@ -1,17 +1,17 @@
 <template>
   <div>
-    <usr-header />
-    <usr-profile />
+    <main-container></main-container>
   </div>
 </template>
 
 <script>
-import Profile from "./components/Profile/index.vue";
-import Header from "./components/Header/index.vue";
+import MainContainer from "@/components/Main/index.vue";
 
 export default {
   name: "App",
-  components: { "usr-profile": Profile, "usr-header": Header },
+  components: {
+    MainContainer
+  }
 };
 </script>
 
