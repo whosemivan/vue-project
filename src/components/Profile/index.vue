@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      name: "Антон Иванов",
+      name: localStorage.getItem("name"),
       contacts: [
         { type: "phone", value: "+7(123)456-78-90" },
         { type: "email", value: "antoshka@ivanov.sin" },

@@ -1,8 +1,12 @@
 <template>
   <header class="header">
     <router-link to="/"> Home </router-link>
-    <router-link to="/profile"> Profile </router-link>
-    <button class="header__btn" @click="setIsPopup">Auth</button>
+    <router-link v-if="user" to="/profile"> Profile </router-link>
+    <router-link to="/test"> Test </router-link>
+    <router-link v-if="!user" to="/auth"> Auth </router-link>
+    <button v-if="user" @click="logout">Log Out</button>
+
+    <button class="header__btn" @click="setIsPopup">Old Auth</button>
     <div v-if="isPopup" class="header__popup">
       <button class="header__popup-btn" @click="setIsPopup">
         <svg
@@ -36,12 +40,17 @@ export default {
   data() {
     return {
       isPopup: false,
+      user: localStorage.getItem("user")
     };
   },
   methods: {
     setIsPopup() {
       this.isPopup = !this.isPopup;
     },
+    logout() {
+      localStorage.removeItem("user");
+      localStorage.removeItem("name");
+    }
   },
 };
 </script>
