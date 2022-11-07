@@ -15,10 +15,9 @@ export default {
 </script>
 
 <style>
-    .wrapper {
-        background-color: mediumspringgreen;
-        padding: 50px calc(50% - 600px);
-        min-height: calc(100vh - 100px);
-        box-sizing: border-box;
-    }
+ .wrapper {
+     width: 1180px;
+     margin: 0 auto;
+     height: 100vh;
+ }
 </style>

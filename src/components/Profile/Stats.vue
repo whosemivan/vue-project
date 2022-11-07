@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="profile-stats">
     <div v-if="type === 'like'">
         <i class="fa-solid fa-heart"></i>
         {{data}}

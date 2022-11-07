@@ -1,69 +1,65 @@
 <template>
-  <div>
-    <mark>{{ type }}</mark>
-    <div v-if="type === 'login'">
-      <h3>Войти</h3>
-      <form @submit="authUser">
+  <div class="block">
+    <div class="auth-block" v-if="type === 'login'">
+      <h3 class="auth-block__title">Войти</h3>
+      <form class="auth-block__form" @submit="authUser">
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           name="email"
           v-model="authEmail"
+          class="auth-block__input"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           name="password"
           v-model="authPwd"
+          class="auth-block__input"
         />
-        <button type="submit">submit</button>
+        <button type="submit" class="auth-block__btn">Войти</button>
       </form>
-      <hr />
-      <router-link to="/signup">Зарегистрироваться</router-link>
-      <hr />
-      <router-link to="/change-pwd">Сменить пароль</router-link>
+      <router-link class="auth-block__link" to="/signup">Зарегистрироваться</router-link>
     </div>
-    <div v-else-if="type === 'signup'">
-      <h3>Зарегистрироваться</h3>
-      <form @submit="regUser">
+
+    <div class="auth-block" v-else-if="type === 'signup'">
+      <h3 class="auth-block__title">Зарегистрироваться</h3>
+      <form class="auth-block__form" @submit="regUser">
         <input
+          class="auth-block__input"
           type="text"
-          placeholder="ur name"
+          placeholder="Your name"
           name="name"
           v-model="regName"
         />
         <input
+          class="auth-block__input"
           type="email"
-          placeholder="your email"
+          placeholder="Your email"
           required
           name="email"
           v-model="regEmail"
         />
         <input
+          class="auth-block__input"
           type="password"
-          placeholder="your password"
+          placeholder="Your password"
           required
           name="password"
           v-model="regPwd"
         />
         <input
+          class="auth-block__input"
           type="password"
-          placeholder="repeat password"
+          placeholder="Repeat password"
           required
           v-model="repeatPwd"
           :class="repeatPwd !== '' && !checkPwd ? 'wrong' : 'success'"
           @input="check"
         />
-        <button type="submit">submit</button>
+        <button class="auth-block__btn" type="submit">Зарегистрироваться</button>
       </form>
-      <hr />
-      <router-link to="/auth">Войти</router-link>
-    </div>
-    <div v-else>
-      <h3>Восстановить пароль</h3>
-      ...
-      <hr />
-      <router-link to="/auth">На страницу входа</router-link>
+      <router-link class="auth-block__link" to="/auth">Войти</router-link>
     </div>
   </div>
 </template>
@@ -160,5 +156,48 @@ export default {
 }
 .success {
   border-color: green;
+}
+
+.auth-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-block__title {
+  font-size: 40px;
+  margin: 0;
+  margin: 40px;
+}
+
+.auth-block__form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.auth-block__input {
+  border: 1px solid #232526;
+  font-size: 18px;
+  font-family: "SF Compact";
+  padding: 15px 10px;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.auth-block__btn {
+  border: 1px solid #232526;
+  padding: 15px 10px;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "SF Compact";
+}
+
+.auth-block__link {
+  color: #232526;
+  text-decoration: none;
+  font-size: 18px;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="profile">
       <div class="profile__contacts">
         <profile-picture />
-        <h2>{{ name }}</h2>
+        <h2 class="profile__title">{{ name }}</h2>
         <div class="profile__item">
           <profile-contacts
             v-for="(c, i) in contacts"
@@ -23,11 +23,8 @@
       </div>
       <div class="profile__about">
         <h2>Графический дизайнер</h2>
-        <div>
-          Возраст:
-          <button @click="dec">-</button>
-          {{ age }}
-          <button @click="inc">+</button>
+        <div class="profile__project">
+
         </div>
       </div>
     </div>
@@ -44,7 +41,7 @@ export default {
   components: {
     "profile-picture": Picture,
     "profile-contacts": Contacts,
-    "profile-stats": Stats
+    "profile-stats": Stats,
   },
   data() {
     return {
@@ -62,15 +59,7 @@ export default {
       ],
       age: 20,
     };
-  },
-  methods: {
-    inc() {
-      this.age++;
-    },
-    dec() {
-      this.age > 0 && this.age--;
-    },
-  },
+  }
 };
 </script>
 
@@ -82,13 +71,16 @@ export default {
   margin: auto;
 }
 .profile__contacts {
-  background: #222;
-  color: #fff;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #292b2c;
 }
+
 .profile__about {
   padding: 30px;
-  border: 1px solid #222;
 }
 .profile__item {
   display: flex;
@@ -98,5 +90,19 @@ export default {
 .profile__stats {
   display: flex;
   justify-content: space-between;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.profile__title {
+  font-family: "SF Compact";
+  font-style: normal;
+  font-weight: 790;
+  font-size: 18px;
+  line-height: 21px;
+  color: #292b2c;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 </style>
