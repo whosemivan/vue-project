@@ -3,7 +3,7 @@
     <div class="profile">
       <div class="profile__contacts">
         <profile-picture />
-        <h2 class="profile__title">{{ name }}</h2>
+        <h2 class="profile__title">{{ userData.name }}</h2>
         <div class="profile__item">
           <profile-contacts
             v-for="(c, i) in contacts"
@@ -23,8 +23,19 @@
       </div>
       <div class="profile__about">
         <h2>Графический дизайнер</h2>
-        <div class="profile__project">
-
+        <div class="profile__projects">
+          <div
+            class="profile__project"
+            v-for="item of projects"
+            :key="item._id"
+          >
+            <h2 class="profile__project-title">{{ item.title }}</h2>
+            <div
+              class="portfolio__project-image"
+              :style="{ backgroundImage: `url(${item.main_image})` }"
+            ></div>
+            <button @click="removeProject(item._id)">Remove</button>
+          </div>
         </div>
       </div>
     </div>
@@ -38,6 +49,7 @@ import Stats from "./Stats.vue";
 
 export default {
   name: "usr-profile",
+  props: ["userData"],
   components: {
     "profile-picture": Picture,
     "profile-contacts": Contacts,
@@ -58,30 +70,63 @@ export default {
         { type: "stat", value: "15" },
       ],
       age: 20,
+      projects: this.userData.portfolio || [],
     };
-  }
+  },
+  methods: {
+    removeProject(id) {
+      console.log(id, this.userData._id);
+      fetch(
+        `https://dream-design-server.herokuapp.com/api/users/project/remove/${this.userData._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ _id: id }),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("result", data);
+          if (data.message === "ok") {
+            localStorage.setItem("user", JSON.stringify(data.data));
+            this.projects = this.projects.filter((p) => p._id !== id);
+          }
+        });
+    },
+  },
 };
 </script>
 
 <style scoped>
 .profile {
-  display: grid;
-  grid-template-columns: 30% 1fr;
-  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  width: 1180px;
   margin: auto;
 }
 .profile__contacts {
-  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #292b2c;
+  width: 180px;
 }
 
-.profile__about {
-  padding: 30px;
+.profile__projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 880px;
 }
+
+.profile__project {
+  width: 280px;
+}
+
 .profile__item {
   display: flex;
   flex-direction: column;
@@ -104,5 +149,10 @@ export default {
   margin: 0;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.portfolio__project-image {
+  height: 190px;
+  background-size: cover;
 }
 </style>

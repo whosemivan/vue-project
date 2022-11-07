@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <button class="header__btn-add">Добавить проект</button>
+    <button @click="showPopup" v-if="user" class="header__btn-add">Добавить проект</button>
     <nav>
       <router-link class="header__link" to="/">Главная</router-link>
       <router-link class="header__link" v-if="user" to="/test"
@@ -22,14 +22,18 @@ export default {
   name: "usr-header",
   data() {
     return {
-      user: localStorage.getItem("user"),
+      user: localStorage.getItem("user")
     };
   },
   methods: {
     logout() {
       localStorage.removeItem("user");
       localStorage.removeItem("name");
+      this.user = "";
     },
+    showPopup() {
+      this.$emit("showPopup");
+    }
   },
 };
 </script>

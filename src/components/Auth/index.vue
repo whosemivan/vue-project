@@ -104,7 +104,7 @@ export default {
           evt.target.reset();
           localStorage.setItem("user", JSON.stringify(data.data));
           localStorage.setItem("name", JSON.stringify(data.data.name));
-          this.$router.replace("profile");
+          this.$router.replace("/");
         } else {
           alert(data.message);
         }
@@ -137,7 +137,7 @@ export default {
         evt.target.reset();
         localStorage.setItem("user", JSON.stringify(data.data));
         localStorage.setItem("name", JSON.stringify(data.data.name));
-        this.$router.replace("profile");
+        this.$router.replace("/");
       } else {
         alert(data.message);
       }

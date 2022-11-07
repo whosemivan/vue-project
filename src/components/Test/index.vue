@@ -1,20 +1,20 @@
 <template>
-  <div>
-    <h1>test is here</h1>
-    <div class="container">
+  <section class="designers">
+    <h1 class="designers__title">Дизайнеры</h1>
+    <div class="designers__container">
       <div class="card" v-for="u of users" :key="u.email">
-        {{ u.name || "NoName" }}
-        <hr />
-        {{ u.email }}
+        <div class="designers__item">
+          <h3 class="designers__title">{{u.name || "No name"}}</h3>
+          <p class="designers__email">{{u.email}}</p>
+          <router-link class="designers__link" :to="{ name: 'userProfile', params: { id: u._id } }">Смотреть профиль</router-link>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-// TODO: Используя localStorage, переписать шапку так, чтобы при наличии пользователя не было кнопок входа, а при отсутствии пользователя не было ссылки на личный кабинет.
-// TODO: На странице пользователя (можно в шапке), добавить кнопку "выйти" - очистить localStorage.
-// TODO: Отображать в личном кабинете данные авторизованного пользователя
+
 
 export default {
     data() {
@@ -34,3 +34,7 @@ export default {
    }
 };
 </script>
+
+<style scoped>
+
+</style>
