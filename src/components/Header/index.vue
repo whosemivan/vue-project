@@ -3,7 +3,7 @@
     <button @click="showPopup" v-if="user" class="header__btn-add">Добавить проект</button>
     <nav>
       <router-link class="header__link" to="/">Главная</router-link>
-      <router-link class="header__link" v-if="user" to="/test"
+      <router-link class="header__link" v-if="user" to="/designers"
         >Найти дизайнера</router-link
       >
       <router-link class="header__link" v-if="user" to="/profile"
@@ -20,19 +20,13 @@
 <script>
 export default {
   name: "usr-header",
-  data() {
-    return {
-      user: localStorage.getItem("user")
-    };
-  },
+  props: ["user"],
   methods: {
-    logout() {
-      localStorage.removeItem("user");
-      localStorage.removeItem("name");
-      this.user = "";
-    },
     showPopup() {
       this.$emit("showPopup");
+    },
+    logout() {
+      this.$emit("logout");
     }
   },
 };

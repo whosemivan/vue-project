@@ -3,13 +3,15 @@
     <h1 class="main__title">
       Миллионы дизайнеров и художников готовы вам помочь
     </h1>
-    <router-link class="main__link" to="/auth">Начать</router-link>
+    <router-link v-if="!user" class="main__link" to="/auth">Начать</router-link>
+    <router-link v-if="user" class="main__link" to="/designers">Начать</router-link>
   </section>
 </template>
 
 <script>
 export default {
   name: "home-page",
+  props: ["user"]
 };
 </script>
 

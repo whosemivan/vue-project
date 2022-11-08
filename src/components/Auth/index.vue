@@ -80,6 +80,9 @@ export default {
     };
   },
   methods: {
+    setUser() {
+      this.$emit("setUser");
+    },
     regUser: async function (evt) {
       evt.preventDefault();
       console.log(this.checkPwd);
@@ -103,8 +106,8 @@ export default {
         if (data.message === "ok") {
           evt.target.reset();
           localStorage.setItem("user", JSON.stringify(data.data));
-          localStorage.setItem("name", JSON.stringify(data.data.name));
-          this.$router.replace("/");
+          this.setUser();
+          this.$router.replace("/profile");
         } else {
           alert(data.message);
         }
@@ -136,8 +139,8 @@ export default {
       if (data.message === "ok") {
         evt.target.reset();
         localStorage.setItem("user", JSON.stringify(data.data));
-        localStorage.setItem("name", JSON.stringify(data.data.name));
-        this.$router.replace("/");
+        this.setUser();
+        this.$router.replace("/profile");
       } else {
         alert(data.message);
       }

@@ -34,7 +34,7 @@
               class="portfolio__project-image"
               :style="{ backgroundImage: `url(${item.main_image})` }"
             ></div>
-            <button @click="removeProject(item._id)">Remove</button>
+            <button class="portfolio__remove-btn" @click="removeProject(item._id)">Remove</button>
           </div>
         </div>
       </div>
@@ -154,5 +154,14 @@ export default {
 .portfolio__project-image {
   height: 190px;
   background-size: cover;
+}
+
+.portfolio__remove-btn {
+  margin-top: 5px;
+  font-family: "SF Compact";
+  font-size: 16px;
+  background: transparent;
+  border: 1px solid #292b2c;
+  cursor: pointer;
 }
 </style>

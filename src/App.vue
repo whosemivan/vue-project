@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <main-header @showPopup="modalOpen" />
-    <main-container :userData="userData"></main-container>
+    <main-header :user="user" @showPopup="modalOpen" @logout="logout" />
+    <main-container :user="user" @setUser="setUser" :userData="userData"></main-container>
     <div
       :style="{ display: modalActivity ? 'flex' : 'none' }"
       class="modal-wrapper"
@@ -27,6 +27,7 @@ export default {
     return {
       modalActivity: false,
       userData: {},
+      user: localStorage.getItem("user")
     };
   },
   methods: {
@@ -40,6 +41,14 @@ export default {
       this.userData = data;
       console.log("global user", this.userData);
     },
+    logout() {
+      localStorage.removeItem("user");
+      this.user = "";
+      this.$router.replace("/");
+    },
+    setUser() {
+      this.user = localStorage.getItem("user");
+    }
   },
   created() {
     let user = localStorage.getItem("user");

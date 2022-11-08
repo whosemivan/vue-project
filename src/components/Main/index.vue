@@ -1,5 +1,5 @@
 <template>
-    <router-view :userData="userData"></router-view>
+    <router-view :user="user" @setUser="setUser" :userData="userData"></router-view>
 </template>
 
 <script>

@@ -5,7 +5,7 @@ import App from './App.vue';
 import Profile from "./components/Profile/index.vue";
 import Home from "./components/Home/index.vue";
 import Auth from "@/components/Auth";
-import Test from "@/components/Test";
+import Designers from "@/components/Designers";
 import NotFound from "@/components/NotFound";
 import DesignerProfile from "@/components/DesignerProfile";
 
@@ -17,8 +17,8 @@ const routes = [
   {path: "/auth", component: Auth, props: {type: "login"}},
   {path: "/signup", component: Auth, props: {type: "signup"}},
   {path: "/change-pwd", component: Auth, props: {type: "pwd"}},
-  {path: "/test", component: Test},
-  {path: "/test/users/:id", name: 'userProfile', component: DesignerProfile},
+  {path: "/designers", component: Designers},
+  {path: "/designers/users/:id", name: 'userProfile', component: DesignerProfile},
   {path: "/:catchAll(.*)", component: NotFound}
 ];
 
