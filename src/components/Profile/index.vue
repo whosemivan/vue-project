@@ -77,7 +77,7 @@ export default {
     removeProject(id) {
       console.log(id, this.userData._id);
       fetch(
-        `https://dream-design-server.herokuapp.com/api/users/project/remove/${this.userData._id}`,
+        `https://srv.petiteweb.dev/api/profile/users/project/remove/${this.userData._id}`,
         {
           method: "PATCH",
           headers: {

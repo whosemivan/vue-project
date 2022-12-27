@@ -25,7 +25,7 @@ export default {
     },
    name: "test-data",
    created() {
-    fetch("https://dream-design-server.herokuapp.com/api/users")
+    fetch("https://srv.petiteweb.dev/api/profile/users")
         .then(res => res.json())
         .then(data => {
             if (data.message === "ok") {

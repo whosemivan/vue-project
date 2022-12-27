@@ -44,7 +44,7 @@ export default {
     "profile-picture": Picture
   },
   created() {
-    fetch(`https://dream-design-server.herokuapp.com/api/users/${this.id}`)
+    fetch(`https://srv.petiteweb.dev/api/profile/users/${this.id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -50,7 +50,7 @@ export default {
       };
       if (user) {
         fetch(
-          `https://dream-design-server.herokuapp.com/api/users/project/add/${user._id}`,
+          `https://srv.petiteweb.dev/api/profile/users/project/add/${user._id}`,
           {
             method: "PATCH",
             headers: {

@@ -93,7 +93,7 @@ export default {
       };
       if (this.checkPwd) {
         const data = await fetch(
-          "https://dream-design-server.herokuapp.com/api/users/add",
+          "https://srv.petiteweb.dev/api/profile/users/add",
           {
             method: "post",
             headers: {
@@ -125,7 +125,7 @@ export default {
       };
 
       const data = await fetch(
-        "https://dream-design-server.herokuapp.com/api/users/auth",
+        "https://srv.petiteweb.dev/api/profile/users/auth",
         {
           method: "post",
           headers: {
